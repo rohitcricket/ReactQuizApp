@@ -1,97 +1,112 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import QuestionList from "./quiz/QuestionList.jsx";
+import Scorebox from "./quiz/Scorebox.jsx";
 
 class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			question: [
+			questions: [
 				{
 					id: 1,
 					text: "What is your name?",
 					choices: [
 						{
 							id: "a",
-							text: "John"
+							text: "Michael"
 						},
 						{
 							id: "b",
-							text: "Dagny"
+							text: "Brad"
 						},
 						{
 							id: "c",
-							text: "Francisco"
+							text: "Steven"
 						}
 					],
-					correct: "a"
+					correct: "b"
 				},
 				{
 					id: 2,
-					text: "What is your best friend?",
+					text: "What is your mothers name?",
 					choices: [
 						{
 							id: "a",
-							text: "John"
+							text: "Sara"
 						},
 						{
 							id: "b",
-							text: "Dagny"
+							text: "Sue"
 						},
 						{
 							id: "c",
-							text: "Francisco"
+							text: "Donna"
 						}
 					],
 					correct: "c"
 				},
 				{
 					id: 3,
-					text: "Where are you from?",
+					text: "What is your fathers name?",
 					choices: [
 						{
 							id: "a",
-							text: "Ouray"
+							text: "Bobby"
 						},
 						{
 							id: "b",
-							text: "New York"
+							text: "Harry"
 						},
 						{
 							id: "c",
-							text: "Atlantis"
+							text: "Wayne"
 						}
 					],
 					correct: "c"
 				},
 				{
 					id: 4,
-					text: "Where did you study?",
+					text: "What is your friends name?",
 					choices: [
 						{
 							id: "a",
-							text: "MIT"
+							text: "John"
 						},
 						{
 							id: "b",
-							text: "Stanton Institute"
+							text: "Paul"
 						},
 						{
 							id: "c",
-							text: "Stanford"
+							text: "Jose"
 						}
 					],
-					correct: "b"
+					correct: "a"
 				}
 			],
 			score: 0,
 			current: 1
 		};
 	}
+
+	setCurrent(current) {
+		this.setState({ current });
+	}
+
+	setScore(score) {
+		this.setState({ score });
+	}
+
 	render() {
 		return (
 			<div>
-				<QuestionList {...this.state} />
+				<Scorebox {...this.state} />
+				<QuestionList
+					{...this.state}
+					setCurrent={this.setCurrent.bind(this)}
+					setScore={this.setScore.bind(this)}
+				/>
 			</div>
 		);
 	}
